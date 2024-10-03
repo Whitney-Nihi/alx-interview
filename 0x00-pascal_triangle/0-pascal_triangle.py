@@ -3,14 +3,17 @@ def pascal_triangle(n):
     if n <= 0:
         return []
 
-    triangle = [[1]]  # First row is always [1]
+    triangle = []
 
-    for i in range(1, n):
-        row = [1]  # Every row starts with 1
+    for i in range(n):
+        # Create a new row with 1's at both ends
+        row = [1] * (i + 1)
+
+        # Calculate the inner elements of the row
         for j in range(1, i):
-            # Add the value from the previous row's adjacent elements
-            row.append(triangle[i - 1][j - 1] + triangle[i - 1][j])
-        row.append(1)  # Every row ends with 1
+            row[j] = triangle[i - 1][j - 1] + triangle[i - 1][j]
+
+        # Append the row to the triangle
         triangle.append(row)
 
     return triangle
